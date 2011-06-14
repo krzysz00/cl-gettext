@@ -1,1 +1,2 @@
-cl-gettext is a Common Lisp binding to GNU gettext.
+cl-gettext is a Common Lisp binding to GNU gettext. It is licensed
+under the LLGPL, which is in the file COPYING.
