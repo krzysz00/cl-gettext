@@ -21,9 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 (defpackage :cl-gettext
   (:nicknames :cl-gettext)
-  (:use :cl
-   ;; Packages you want to import go here
-   )
+  (:use :cl)
   (:export
     :gettext
     :ngettext
@@ -32,5 +30,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
     :bind_textdomain_codeset
     :setlocale
     :localeconv
-   ))
+    :init-gettext
+    :_
+    :_noop
+    :LC_CTYPE
+    :LC_NUMERIC
+    :LC_TIME
+    :LC_COLLATE
+    :LC_MONETARY
+    :LC_MESSAGES
+    :LC_ALL
+    :LC_PAPER
+    :LC_NAME
+    :LC_ADDRESS
+    :LC_TELEPHONE
+    :LC_MEASUREMENT
+    :LC_IDENTIFICATION
+    ))
 

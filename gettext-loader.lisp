@@ -17,18 +17,9 @@ License along with this library (in the file COPYING); if not, write to the Free
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 |#
 
-(defpackage #:cl-gettext-asd
-  (:use :cl :asdf))
+(in-package :cl-gettext)
 
-(in-package :cl-gettext-asd)
-
-(defsystem cl-gettext
-  :name "cl-gettext"
-  :version "none"
-  :serial t
-  :components ((:file "defpackage")
-               (:file "gettext-cffi")
-               (:file "gettext-loader")
-               (:file "gettext")
-               )
-  :depends-on (:cffi :alexandria))
+;; (cffi:define-foreign-library gettext
+;;                              (:unix "libc.so")
+;;                              (t  (:default "libintl")))
+;; (cffi:use-foreign-library gettext)

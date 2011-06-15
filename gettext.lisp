@@ -17,18 +17,15 @@ License along with this library (in the file COPYING); if not, write to the Free
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 |#
 
-(defpackage #:cl-gettext-asd
-  (:use :cl :asdf))
+(in-package :cl-gettext)
 
-(in-package :cl-gettext-asd)
+(defun init-gettext (textdomain directory &optional (locales '(LC_ALL)))
+  (loop for i in locales do
+        (setlocale i ""))
+  (bindtextdomain textdomain directory)
+  (textdomain textdomain))
 
-(defsystem cl-gettext
-  :name "cl-gettext"
-  :version "none"
-  :serial t
-  :components ((:file "defpackage")
-               (:file "gettext-cffi")
-               (:file "gettext-loader")
-               (:file "gettext")
-               )
-  :depends-on (:cffi :alexandria))
+(defmacro _ (string) `(gettext ,string))
+
+(defmacro _noop (string)
+  "Gettext noop" string)
