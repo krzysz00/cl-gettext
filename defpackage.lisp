@@ -26,25 +26,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
     :gettext
     :ngettext
     :textdomain
-    :bindtextbomain
+    :bindtextdomain
     :bind_textdomain_codeset
     :setlocale
     :localeconv
     :init-gettext
     :_
     :_noop
-    :LC_CTYPE
-    :LC_NUMERIC
-    :LC_TIME
-    :LC_COLLATE
-    :LC_MONETARY
-    :LC_MESSAGES
-    :LC_ALL
-    :LC_PAPER
-    :LC_NAME
-    :LC_ADDRESS
-    :LC_TELEPHONE
-    :LC_MEASUREMENT
-    :LC_IDENTIFICATION
+    :LC-CTYPE
+    :LC-NUMERIC
+    :LC-TIME
+    :LC-COLLATE
+    :LC-MONETARY
+    :LC-MESSAGES
+    :LC-ALL
+    :LC-PAPER
+    :LC-NAME
+    :LC-ADDRESS
+    :LC-TELEPHONE
+    :LC-MEASUREMENT
+    :LC-IDENTIFICATION
     ))
 

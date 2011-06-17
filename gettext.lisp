@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 (in-package :cl-gettext)
 
-(defun init-gettext (textdomain directory &optional (locales '(LC_ALL)))
+(defun init-gettext (textdomain directory &optional (locales (list lc-all)))
   (loop for i in locales do
         (setlocale i ""))
   (bindtextdomain textdomain directory)
