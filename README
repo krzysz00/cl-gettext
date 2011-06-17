@@ -11,8 +11,8 @@ More information on gettext can be found at
 http://www.gnu.org/software/gettext/manual/gettext.html , and a C
 tutorial can be found at
 http://www.gnu.org/software/gettext/manual/gettext.html . More
-documentation for the binding is available at (**) or in the
-documentation.html file located in your download.
+documentation for the binding is available in the documentation.html
+file located in your download.
 
 If you find any bugs in this binding, please file an issue at
 https://github.com/krzysz00/cl-gettext , which is also the place to
