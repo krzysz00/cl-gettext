@@ -75,18 +75,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 
 (cffi:defcfun ("gettext" gettext) :string
+  "Get the translation (if any) of `__msgid', which is a string"
   (__msgid :string))
 
 (cffi:defcfun ("dgettext" dgettext) :string
+  "Like `gettext', except with explicit specification of the textdomain. You shouldn't use this, or any d* function, except in special circumstances, so they are not exported."
   (__domainname :string)
   (__msgid :string))
 
 (cffi:defcfun ("dcgettext" dcgettext) :string
+  "Like `dgettext', except also specifying the locale category. It's not exported for the same reason as `dgettext'."
   (__domainname :string)
   (__msgid :string)
   (__category :int))
 
 (cffi:defcfun ("ngettext" ngettext) :string
+  "The plural version of `gettext' The first string should be the return value for n == 1, and the second string the value for n != 1. The third argument is n. Use this instead of an `if' because other languages have more or less than two branches for plurals, and this function allows translators to specify the plurals for their language."
   (__msgid1 :string)
   (__msgid2 :string)
   (__n :unsigned-long))
@@ -98,31 +102,35 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
   (__n :unsigned-long))
 
 (cffi:defcfun ("textdomain" textdomain) :string
+   "Set the textdomain for the application. The textdomain is the name (before the dot) of your project's .mo files"
   (__domainname :string))
 
 (cffi:defcfun ("bindtextdomain" bindtextdomain) :string
+   "Specify what directory the `textdomain' resides under. On Linux systems, this is usually \"/usr/share/locale\"."
   (__domainname :string)
   (__dirname :string))
 
-(cffi:defcfun ("bind_textdomain_codeset" bind_textdomain_codeset) :string
+(cffi:defcfun ("bind_textdomain_codeset" bind-textdomain-codeset) :string
+  "Set the encoding for the strings stored in `__domain'. You normally don't need to call this, as the locale contains this information a;ready."
   (__domainname :string)
   (__codeset :string))
 
-(defconstant LC-CTYPE 0)
-(defconstant LC-NUMERIC 1)
-(defconstant LC-TIME 2)
-(defconstant LC-COLLATE 3)
-(defconstant LC-MONETARY 4)
-(defconstant LC-MESSAGES 5)
-(defconstant LC-ALL 6)
-(defconstant LC-PAPER 7)
-(defconstant LC-NAME 8)
-(defconstant LC-ADDRESS 9)
-(defconstant LC-TELEPHONE 10)
-(defconstant LC-MEASUREMENT 11)
-(defconstant LC-IDENTIFICATION 12)
+(defconstant LC-CTYPE 0 "A locale category.")
+(defconstant LC-NUMERIC 1 "A locale category.")
+(defconstant LC-TIME 2 "A locale category.")
+(defconstant LC-COLLATE 3 "A locale category.")
+(defconstant LC-MONETARY 4 "A locale category.")
+(defconstant LC-MESSAGES 5 "A locale category.")
+(defconstant LC-ALL 6 "A locale category. This category is the one which is most often used (and the default when initializing `cl-gettext')")
+(defconstant LC-PAPER 7 "A locale category.")
+(defconstant LC-NAME 8 "A locale category.")
+(defconstant LC-ADDRESS 9 "A locale category.")
+(defconstant LC-TELEPHONE 10 "A locale category.")
+(defconstant LC-MEASUREMENT 11 "A locale category.")
+(defconstant LC-IDENTIFICATION 12 "A locale category.")
 
 (cffi:defcstruct lconv
+        "Structure to hold locale information such as the number seperators."
 	(decimal_point :string)
 	(thousands_sep :string)
 	(grouping :string)
@@ -149,9 +157,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 	(__int_n_sign_posn :char))
 
 (cffi:defcfun ("setlocale" setlocale) :string
+  "Set a locale category to the locale given in `__locale'. If __locale is \"\", the current system setting will be used."
   (__category :int)
   (__locale :string))
 
-(cffi:defcfun ("localeconv" localeconv) :pointer)
+(cffi:defcfun ("localeconv" localeconv) :pointer
+              "Returns an `lconv' structure with the information applicable for the current locale.")
 
 

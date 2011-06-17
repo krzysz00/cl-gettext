@@ -1,2 +1,21 @@
-cl-gettext is a Common Lisp binding to GNU gettext. It is licensed
-under the LLGPL, which is in the file COPYING.
+cl-gettext is a Common Lisp binding to GNU gettext, which is a library
+that allows strings in a program to be translated to other languages.
+It is licensed under the LLGPL, which is in the file COPYING. The only
+dependency for this binding is cffi. Functions have the same names as
+their C counterparts, except that underscores are changed to dashes. A
+convenience function `init-gettext' has been provided, which allows
+for gettext initialization in one step. In addition, the _ and _noop
+macros are provided, which are used to mark translatable strings.
+
+More information on gettext can be found at
+http://www.gnu.org/software/gettext/manual/gettext.html , and a C
+tutorial can be found at
+http://www.gnu.org/software/gettext/manual/gettext.html . More
+documentation for the binding is available at (**) or in the
+documentation.html file located in your download.
+
+If you find any bugs in this binding, please file an issue at
+https://github.com/krzysz00/cl-gettext , which is also the place to
+find the latest version of cl-gettext. If you need to contact the
+author, please email krzysdrewniak <AT> gmail <DOT> com .
+

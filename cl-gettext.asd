@@ -24,11 +24,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 (defsystem cl-gettext
   :name "cl-gettext"
-  :version "none"
+  :version "0.1"
+  :license "LLGPL"
+  :author "Krzysztof Drewniak <krzysdrewniak <AT> gmail <DOT> com>"
   :serial t
   :components ((:file "defpackage")
                (:file "gettext-cffi")
                (:file "gettext-loader")
                (:file "gettext")
                )
-  :depends-on (:cffi :alexandria))
+  :depends-on (:cffi))

@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html> 
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>CL-GETTEXT - A Common Lisp binding to GNU Gettext.</title>
+  <style type="text/css">
+  pre { padding:5px; background-color:#e0e0e0 }
+  h3, h4 { text-decoration: underline; }
+  a { text-decoration: none; padding: 1px 2px 1px 2px; }
+  a:visited { text-decoration: none; padding: 1px 2px 1px 2px; }
+  a:hover { text-decoration: none; padding: 1px 1px 1px 1px; border: 1px solid #000000; } 
+  a:focus { text-decoration: none; padding: 1px 2px 1px 2px; border: none; }
+  a.none { text-decoration: none; padding: 0; }
+  a.none:visited { text-decoration: none; padding: 0; } 
+  a.none:hover { text-decoration: none; border: none; padding: 0; } 
+  a.none:focus { text-decoration: none; border: none; padding: 0; } 
+  a.noborder { text-decoration: none; padding: 0; } 
+  a.noborder:visited { text-decoration: none; padding: 0; } 
+  a.noborder:hover { text-decoration: none; border: none; padding: 0; } 
+  a.noborder:focus { text-decoration: none; border: none; padding: 0; }  
+  pre.none { padding:5px; background-color:#ffffff }
+  </style>
+</head>
+
+<body bgcolor=white>
+
+<h2> CL-GETTEXT - A Common Lisp binding to GNU Gettext.</h2>
+
+<blockquote>
+<br>&nbsp;<br><h3><a name=abstract class=none>Abstract</a></h3>
+
+The code is licenced under the LLGPL
+
+<p>
+<font color=red>Download shortcut:</font> <a href="http://github.com/krzysz00/cl-gettext">http://github.com/krzysz00/cl-gettext</a>.
+</blockquote>
+
+<br>&nbsp;<br><h3><a class=none name="contents">Contents</a></h3>
+<ol>
+  <li><a href="#download">Download</a>
+  <li><a href="#dictionary">The CL-GETTEXT dictionary</a>
+    <ol>
+      <li><a href="#bind-textdomain-codeset"><code>bind-textdomain-codeset</code></a>
+      <li><a href="#bindtextdomain"><code>bindtextdomain</code></a>
+      <li><a href="#gettext"><code>gettext</code></a>
+      <li><a href="#init-gettext"><code>init-gettext</code></a>
+      <li><a href="#lc-address"><code>lc-address</code></a>
+      <li><a href="#lc-all"><code>lc-all</code></a>
+      <li><a href="#lc-collate"><code>lc-collate</code></a>
+      <li><a href="#lc-ctype"><code>lc-ctype</code></a>
+      <li><a href="#lc-identification"><code>lc-identification</code></a>
+      <li><a href="#lc-measurement"><code>lc-measurement</code></a>
+      <li><a href="#lc-messages"><code>lc-messages</code></a>
+      <li><a href="#lc-monetary"><code>lc-monetary</code></a>
+      <li><a href="#lc-name"><code>lc-name</code></a>
+      <li><a href="#lc-numeric"><code>lc-numeric</code></a>
+      <li><a href="#lc-paper"><code>lc-paper</code></a>
+      <li><a href="#lc-telephone"><code>lc-telephone</code></a>
+      <li><a href="#lc-time"><code>lc-time</code></a>
+      <li><a href="#localeconv"><code>localeconv</code></a>
+      <li><a href="#ngettext"><code>ngettext</code></a>
+      <li><a href="#setlocale"><code>setlocale</code></a>
+      <li><a href="#textdomain"><code>textdomain</code></a>
+      <li><a href="#_"><code>_</code></a>
+      <li><a href="#_noop"><code>_noop</code></a>
+    </ol>
+  <li><a href="#ack">Acknowledgements</a>
+</ol>
+
+<br>&nbsp;<br><h3><a class=none name="download">Download</a></h3>
+
+CL-GETTEXT together with this documentation can be downloaded from <a
+href="http://github.com/krzysz00/cl-gettext">http://github.com/krzysz00/cl-gettext</a>. The
+current version is 0.1.
+
+<br>&nbsp;<br><h3><a class=none name="dictionary">The CL-GETTEXT dictionary</a></h3>
+
+
+
+<!-- Entry for BIND-TEXTDOMAIN-CODESET -->
+
+<p><br>[Function]<br><a class=none name='bind-textdomain-codeset'><b>bind-textdomain-codeset</b> <i>__domainname __codeset</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Set the encoding for the strings stored in `__domain&#039;. You normally don&#039;t need to call this, as the locale contains this information a;ready.
+
+</blockquote>
+
+<!-- End of entry for BIND-TEXTDOMAIN-CODESET -->
+
+
+<!-- Entry for BINDTEXTDOMAIN -->
+
+<p><br>[Function]<br><a class=none name='bindtextdomain'><b>bindtextdomain</b> <i>__domainname __dirname</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Specify what directory the `textdomain&#039; resides under. On Linux systems, this is usually &quot;/usr/share/locale&quot;.
+
+</blockquote>
+
+<!-- End of entry for BINDTEXTDOMAIN -->
+
+
+<!-- Entry for GETTEXT -->
+
+<p><br>[Function]<br><a class=none name='gettext'><b>gettext</b> <i>__msgid</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Get the translation (if any) of `__msgid&#039;, which is a string
+
+</blockquote>
+
+<!-- End of entry for GETTEXT -->
+
+
+<!-- Entry for INIT-GETTEXT -->
+
+<p><br>[Function]<br><a class=none name='init-gettext'><b>init-gettext</b> <i>textdomain directory <tt>&amp;optional</tt> locales</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Wrapper for the series of calls needed to initialize gettext. `textdomain&#039; holds the $foo part of $foo.mo . `directory&#039; is where the .mo files will be stores. `locales&#039; is a list of locale categories to initialize with `setlocale&#039; if `lc-all&#039; doesn&#039;t work for you.
+
+</blockquote>
+
+<!-- End of entry for INIT-GETTEXT -->
+
+
+<!-- Entry for LC-ADDRESS -->
+
+<p><br>[Constant]<br><a class=none name='lc-address'><b>lc-address</b></a>
+<blockquote><br>
+
+A locale category.
+
+</blockquote>
+
+<!-- End of entry for LC-ADDRESS -->
+
+
+<!-- Entry for LC-ALL -->
+
+<p><br>[Constant]<br><a class=none name='lc-all'><b>lc-all</b></a>
+<blockquote><br>
+
+A locale category. This category is the one which is most often used (and the default when initializing `cl-gettext&#039;)
+
+</blockquote>
+
+<!-- End of entry for LC-ALL -->
+
+
+<!-- Entry for LC-COLLATE -->
+
+<p><br>[Constant]<br><a class=none name='lc-collate'><b>lc-collate</b></a>
+<blockquote><br>
+
+A locale category.
+
+</blockquote>
+
+<!-- End of entry for LC-COLLATE -->
+
+
+<!-- Entry for LC-CTYPE -->
+
+<p><br>[Constant]<br><a class=none name='lc-ctype'><b>lc-ctype</b></a>
+<blockquote><br>
+
+A locale category.
+
+</blockquote>
+
+<!-- End of entry for LC-CTYPE -->
+
+
+<!-- Entry for LC-IDENTIFICATION -->
+
+<p><br>[Constant]<br><a class=none name='lc-identification'><b>lc-identification</b></a>
+<blockquote><br>
+
+A locale category.
+
+</blockquote>
+
+<!-- End of entry for LC-IDENTIFICATION -->
+
+
+<!-- Entry for LC-MEASUREMENT -->
+
+<p><br>[Constant]<br><a class=none name='lc-measurement'><b>lc-measurement</b></a>
+<blockquote><br>
+
+A locale category.
+
+</blockquote>
+
+<!-- End of entry for LC-MEASUREMENT -->
+
+
+<!-- Entry for LC-MESSAGES -->
+
+<p><br>[Constant]<br><a class=none name='lc-messages'><b>lc-messages</b></a>
+<blockquote><br>
+
+A locale category.
+
+</blockquote>
+
+<!-- End of entry for LC-MESSAGES -->
+
+
+<!-- Entry for LC-MONETARY -->
+
+<p><br>[Constant]<br><a class=none name='lc-monetary'><b>lc-monetary</b></a>
+<blockquote><br>
+
+A locale category.
+
+</blockquote>
+
+<!-- End of entry for LC-MONETARY -->
+
+
+<!-- Entry for LC-NAME -->
+
+<p><br>[Constant]<br><a class=none name='lc-name'><b>lc-name</b></a>
+<blockquote><br>
+
+A locale category.
+
+</blockquote>
+
+<!-- End of entry for LC-NAME -->
+
+
+<!-- Entry for LC-NUMERIC -->
+
+<p><br>[Constant]<br><a class=none name='lc-numeric'><b>lc-numeric</b></a>
+<blockquote><br>
+
+A locale category.
+
+</blockquote>
+
+<!-- End of entry for LC-NUMERIC -->
+
+
+<!-- Entry for LC-PAPER -->
+
+<p><br>[Constant]<br><a class=none name='lc-paper'><b>lc-paper</b></a>
+<blockquote><br>
+
+A locale category.
+
+</blockquote>
+
+<!-- End of entry for LC-PAPER -->
+
+
+<!-- Entry for LC-TELEPHONE -->
+
+<p><br>[Constant]<br><a class=none name='lc-telephone'><b>lc-telephone</b></a>
+<blockquote><br>
+
+A locale category.
+
+</blockquote>
+
+<!-- End of entry for LC-TELEPHONE -->
+
+
+<!-- Entry for LC-TIME -->
+
+<p><br>[Constant]<br><a class=none name='lc-time'><b>lc-time</b></a>
+<blockquote><br>
+
+A locale category.
+
+</blockquote>
+
+<!-- End of entry for LC-TIME -->
+
+
+<!-- Entry for LOCALECONV -->
+
+<p><br>[Function]<br><a class=none name='localeconv'><b>localeconv</b> <i></i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns an `lconv&#039; structure with the information applicable for the current locale.
+
+</blockquote>
+
+<!-- End of entry for LOCALECONV -->
+
+
+<!-- Entry for NGETTEXT -->
+
+<p><br>[Function]<br><a class=none name='ngettext'><b>ngettext</b> <i>__msgid1 __msgid2 __n</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+The plural version of `gettext&#039; The first string should be the return value for n == 1, and the second string the value for n != 1. The third argument is n. Use this instead of an `if&#039; because other languages have more or less than two branches for plurals, and this function allows translators to specify the plurals for their language.
+
+</blockquote>
+
+<!-- End of entry for NGETTEXT -->
+
+
+<!-- Entry for SETLOCALE -->
+
+<p><br>[Function]<br><a class=none name='setlocale'><b>setlocale</b> <i>__category __locale</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Set a locale category to the locale given in `__locale&#039;. If __locale is &quot;&quot;, the current system setting will be used.
+
+</blockquote>
+
+<!-- End of entry for SETLOCALE -->
+
+
+<!-- Entry for TEXTDOMAIN -->
+
+<p><br>[Function]<br><a class=none name='textdomain'><b>textdomain</b> <i>__domainname</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Set the textdomain for the application. The textdomain is the name (before the dot) of your project&#039;s .mo files
+
+</blockquote>
+
+<!-- End of entry for TEXTDOMAIN -->
+
+
+<!-- Entry for _ -->
+
+<p><br>[Macro]<br><a class=none name='_'><b>_</b> <i>string</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Shorthand for `(gettext string)&#039;
+
+</blockquote>
+
+<!-- End of entry for _ -->
+
+
+<!-- Entry for _NOOP -->
+
+<p><br>[Macro]<br><a class=none name='_noop'><b>_noop</b> <i>string</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+A noop macro to mark translatable strings in places where the call to `gettext&#039; would be evaluated too early. See the C documentation for details on this.
+
+</blockquote>
+
+<!-- End of entry for _NOOP -->
+
+
+<br>&nbsp;<br><h3><a class=none name="ack">Acknowledgements</a></h3>
+
+<p>
+This documentation was prepared with <a href="http://weitz.de/documentation-template/">DOCUMENTATION-TEMPLATE</a>.
+</p>
+<p>
+<p><a href="http://github.com/krzysz00/cl-gettext">BACK TO REPOSITORY</a>
+
+</body>
+</html>

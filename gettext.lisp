@@ -20,12 +20,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 (in-package :cl-gettext)
 
 (defun init-gettext (textdomain directory &optional (locales (list lc-all)))
+  "Wrapper for the series of calls needed to initialize gettext. `textdomain' holds the $foo part of $foo.mo . `directory' is where the .mo files will be stores. `locales' is a list of locale categories to initialize with `setlocale' if `lc-all' doesn't work for you."
   (loop for i in locales do
         (setlocale i ""))
   (bindtextdomain textdomain directory)
   (textdomain textdomain))
 
-(defmacro _ (string) `(gettext ,string))
+(defmacro _ (string) "Shorthand for `(gettext string)'" `(gettext ,string))
 
 (defmacro _noop (string)
-  "Gettext noop" string)
+  "A noop macro to mark translatable strings in places where the call to `gettext' would be evaluated too early. See the C documentation for details on this." 
+  string)

@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
     :ngettext
     :textdomain
     :bindtextdomain
-    :bind_textdomain_codeset
+    :bind-textdomain-codeset
     :setlocale
     :localeconv
     :init-gettext
