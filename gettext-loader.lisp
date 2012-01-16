@@ -19,7 +19,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 (in-package :cl-gettext)
 
-;; (cffi:define-foreign-library gettext
-;;                              (:unix "libc.so")
-;;                              (t  (:default "libintl")))
-;; (cffi:use-foreign-library gettext)
+(cffi:define-foreign-library gettext
+  (:unix (or "libintl.so"
+             "libintl"))
+  (:windows "libintl.dll")
+  (t  (:default "libintl")))
+
+(handler-case (assert (cffi:foreign-funcall "gettext" :string "abc" :string))
+  (error ()
+    (cffi:use-foreign-library gettext)))
