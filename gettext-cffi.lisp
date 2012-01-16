@@ -89,11 +89,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
   (__msgid :string)
   (__category :int))
 
-(cffi:defcfun ("ngettext" ngettext) :string
-  "The plural version of `gettext' The first string should be the return value for n == 1, and the second string the value for n != 1. The third argument is n. Use this instead of an `if' because other languages have more or less than two branches for plurals, and this function allows translators to specify the plurals for their language."
+(cffi:defcfun ("ngettext" %ngettext) :string
   (__msgid1 :string)
   (__msgid2 :string)
   (__n :unsigned-long))
+
+(defun ngettext (msgid1 msgid2 n)
+  "The plural version of `gettext' The first string should be the return value for n == 1, and the second string the value for n != 1. The third argument is n. Use this instead of an `if' because other languages have more or less than two branches for plurals, and this function allows translators to specify the plurals for their language."
+  ;; Deals with plurals for long integers as recommended by Gettext manual, see
+  ;; http://www.gnu.org/savannah-checkouts/gnu/gettext/manual/html_node/Plural-forms.html
+  (%ngettext msgid1 msgid2 (if (> n 1000000)
+                               (+ 1000000 (rem n 1000000))
+                               n)))
 
 (cffi:defcfun ("dngettext" dngettext) :string
   (__domainname :string)
