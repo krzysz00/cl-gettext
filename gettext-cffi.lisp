@@ -102,11 +102,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
                                (+ 1000000 (rem n 1000000))
                                n)))
 
-(cffi:defcfun ("dngettext" dngettext) :string
+(cffi:defcfun ("dngettext" %dngettext) :string
   (__domainname :string)
   (__msgid1 :string)
   (__msgid2 :string)
   (__n :unsigned-long))
+
+(defun dngettext (domainname msgid1 msgid2 n)
+  (%dngettext domainname msgid1 msgid2 (if (> n 1000000)
+                                           (+ 1000000 (rem n 1000000))
+                                           n)))
 
 (cffi:defcfun ("textdomain" textdomain) :string
    "Set the textdomain for the application. The textdomain is the name (before the dot) of your project's .mo files"
